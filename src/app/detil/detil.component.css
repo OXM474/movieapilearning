@@ -1,0 +1,43 @@
+.detil {
+  backdrop-filter: detil(5px);
+  -webkit-backdrop-filter: detil(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 50rem;
+  width: auto;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  padding-left: 3rem;
+  padding-top: 3rem;
+}
+.genres {
+  margin-top: 9px;
+  margin-left: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: solid 1px #6e645e;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  height: auto;
+  width: auto;
+  display: inline-flex;
+  align-self: center;
+}
+.scroll {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #ffbb5c;
+  border-radius: 6px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}

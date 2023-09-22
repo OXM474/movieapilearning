@@ -1,0 +1,230 @@
+<nav class="navbar" style="background-color: #7d7c7c">
+  <div class="container-fluid">
+    <a href="" class="navbar-brand">Movie</a>
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search Movies"
+        aria-label="Search"
+      />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <!-- <ng-container *ngIf=""> -->
+    <div class="navbar-text">
+      <button class="btn btn-outline-primary me-1" routerLink="/login">
+        Login
+      </button>
+      <button class="btn btn-primary" routerLink="/register">Signup</button>
+    </div>
+    <!-- </ng-container> -->
+  </div>
+</nav>
+<div style="padding: 20px 0px 0px 40px; display: flex; flex-direction: column">
+  <h1
+    style="width: 10rem; color: #3e001f; cursor: pointer"
+    (click)="upcomingpage()"
+  >
+    Upcoming
+  </h1>
+  <div class="scroll" style="display: flex; height: auto; width: auto">
+    <div
+      *ngFor="let upcoming of upcoming; let i = index"
+      style="padding-right: 1px; padding-left: 0"
+    >
+      <div class="card" style="width: 15rem; height: 30rem">
+        <img
+          src="https://image.tmdb.org/t/p/w500/{{ upcoming['poster_path'] }}"
+          class="card-img-top"
+          (click)="detial(upcoming['id'])"
+          style="cursor: pointer"
+        />
+        <div class="card_body">
+          <h5
+            style="padding-top: 10px; padding-left: 5px; cursor: pointer"
+            class="card-title"
+            (click)="detial(upcoming['id'])"
+          >
+            {{ upcoming["title"] }}
+          </h5>
+          <div style="font-size: 1rem; padding-left: 5px" class="card_title">
+            <i class="fa-solid fa-star" style="color: #ffd43b"
+              ><span style="color: black">
+                {{ upcoming["vote_average"] }}
+              </span></i
+            >
+            <p
+              class="card-text"
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+              "
+            >
+              {{ upcoming["overview"] }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="padding: 20px 0px 0px 40px; display: flex; flex-direction: column">
+  <h1
+    style="width: 15.8rem; color: #3e001f; cursor: pointer"
+    (click)="nowplayingpage()"
+  >
+    Now Playing
+  </h1>
+  <div class="scroll" style="display: flex; height: auto; width: auto">
+    <div
+      *ngFor="let nowmovie of nowplaying; let i = index"
+      style="padding-right: 1px; padding-left: 0"
+    >
+      <div class="card" style="width: 15rem; height: 30rem">
+        <img
+          src="https://image.tmdb.org/t/p/w500/{{ nowmovie['poster_path'] }}"
+          class="card-img-top"
+          (click)="detial(nowmovie['id'])"
+          style="cursor: pointer"
+        />
+
+        <div class="card_body">
+          <h5
+            style="padding-top: 10px; padding-left: 5px; cursor: pointer"
+            class="card-title"
+            (click)="detial(nowmovie['id'])"
+          >
+            {{ nowmovie["title"] }}
+          </h5>
+          <div style="font-size: 1rem; padding-left: 5px" class="card_title">
+            <i class="fa-solid fa-star" style="color: #ffd43b"
+              ><span style="color: black">
+                {{ nowmovie["vote_average"] }}
+              </span></i
+            >
+            <p
+              class="card-text"
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+              "
+            >
+              {{ nowmovie["overview"] }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="padding: 20px 0px 0px 40px; display: flex; flex-direction: column">
+  <h1
+    style="width: 10rem; color: #3e001f; cursor: pointer"
+    (click)="popularpage()"
+  >
+    Popular
+  </h1>
+  <div class="scroll" style="display: flex; height: auto; width: auto">
+    <div
+      *ngFor="let popular of popular; let i = index"
+      style="padding-right: 1px; padding-left: 0"
+    >
+      <div class="card" style="width: 15rem; height: 30rem">
+        <img
+          src="https://image.tmdb.org/t/p/w500/{{ popular['poster_path'] }}"
+          class="card-img-top"
+          (click)="detial(popular['id'])"
+          style="cursor: pointer"
+        />
+
+        <div class="card_body">
+          <h5
+            style="padding-top: 10px; padding-left: 5px; cursor: pointer"
+            class="card-title"
+            (click)="detial(popular['id'])"
+          >
+            {{ popular["title"] }}
+          </h5>
+          <div style="font-size: 1rem; padding-left: 5px" class="card_title">
+            <i class="fa-solid fa-star" style="color: #ffd43b"
+              ><span style="color: black">
+                {{ popular["vote_average"] }}
+              </span></i
+            >
+            <p
+              class="card-text"
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+              "
+            >
+              {{ popular["overview"] }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="padding: 20px 0px 0px 40px; display: flex; flex-direction: column">
+  <h1
+    style="width: 10rem; color: #3e001f; cursor: pointer"
+    (click)="topratedpage()"
+  >
+    Toprated
+  </h1>
+  <div class="scroll" style="display: flex; height: auto; width: auto">
+    <div
+      *ngFor="let toprated of toprated; let i = index"
+      style="padding-right: 1px; padding-left: 0"
+    >
+      <div class="card" style="width: 15rem; height: 30rem">
+        <img
+          src="https://image.tmdb.org/t/p/w500/{{ toprated['poster_path'] }}"
+          class="card-img-top"
+          (click)="detial(toprated['id'])"
+          style="cursor: pointer"
+        />
+
+        <div class="card_body">
+          <h5
+            style="padding-top: 10px; padding-left: 5px; cursor: pointer"
+            class="card-title"
+            (click)="detial(toprated['id'])"
+          >
+            {{ toprated["title"] }}
+          </h5>
+          <div style="font-size: 1rem; padding-left: 5px" class="card_title">
+            <i class="fa-solid fa-star" style="color: #ffd43b"
+              ><span style="color: black">
+                {{ toprated["vote_average"] }}
+              </span></i
+            >
+            <p
+              class="card-text"
+              style="
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+              "
+            >
+              {{ toprated["overview"] }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

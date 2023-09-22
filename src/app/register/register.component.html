@@ -1,0 +1,216 @@
+<nav class="navbar" style="background-color: #7d7c7c">
+  <div class="container-fluid">
+    <a href="" class="navbar-brand">Movie</a>
+  </div>
+</nav>
+<div
+  class="d-flex justify-content-center align-items-center fs-3"
+  style="padding: 7rem; color: #3e001f"
+>
+  <div
+    style="
+      width: 50rem;
+      height: auto;
+      background: linear-gradient(#ccc8aa6b, #ccc8aa6b);
+      background-size: cover;
+      background-blend-mode: overlay;
+      border-radius: 10%;
+    "
+  >
+    <div style="padding: 7rem; border-radius: 7%">
+      <h1 style="font-family: 'Russo One', cursive, Arial, sans-serif">
+        Sign Up
+      </h1>
+      <form [formGroup]="signupform" (ngSubmit)="(signup)">
+        <label for="firstname" class="form-label">First Name :</label>
+        <input
+          type="text"
+          id="firstname"
+          name="firstname"
+          class="form-control py-3"
+          placeholder="First Name"
+          formControlName="UserFirstName"
+        />
+        <span
+          *ngIf="
+            signupform.get('UserFirstName')!.touched &&
+            !signupform.get('UserFirstName')!.valid
+          "
+          class="text-muted"
+          style="
+            font-size: 1rem !important;
+            color: red !important;
+            padding-left: 2%;
+          "
+          >First Name must be Under 10 Letters</span
+        >
+
+        <br />
+
+        <label for="lastname" id="lastname" class="form-label"
+          >Last Name :</label
+        >
+        <input
+          type="text"
+          id="lastname"
+          name="lastname"
+          class="form-control py-3"
+          placeholder="Last Name"
+          formControlName="UserLastName"
+        />
+        <span
+          *ngIf="
+            !signupform.get('UserLastName')!.touched &&
+            signupform.get('UserLastName')!.valid
+          "
+          class="text-muted"
+          style="
+            font-size: 1rem !important;
+            color: red !important;
+            padding-left: 2%;
+          "
+          >Last Name must be Under 10 Letters</span
+        >
+
+        <br />
+
+        <label for="gender">Select Your Gender :</label>
+        <select
+          id="gender"
+          name="gender"
+          class="form-select"
+          aria-label="select gender"
+          formControlName="gender"
+          style="font-size: 1.5rem !important"
+        >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="rathernotsay">Rather Not Say</option>
+        </select>
+
+        <br />
+
+        <label for="email" class="form-label">Email :</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="form-control py-3"
+          placeholder="Email ID"
+          formControlName="UserEmail"
+        />
+        <span
+          *ngIf="
+            !signupform.get('UserEmail')!.touched &&
+            signupform.get('UserEmail')!.valid
+          "
+          class="text-muted"
+          style="
+            font-size: 1rem !important;
+            color: red !important;
+            padding-left: 2%;
+          "
+          >Please Enter Correct Email Address!</span
+        >
+
+        <br />
+
+        <label for="password" class="form-label">Password :</label>
+        <input
+          type="{{ showPassword ? 'text' : 'password' }}"
+          id="password"
+          name="password"
+          class="form-control py-3"
+          placeholder="Password"
+          formControlName="UserPassword"
+        />
+
+        <span
+          *ngIf="
+            signupform.controls['UserPassword'].touched &&
+            !signupform.controls['UserPassword'].valid
+          "
+          class="text-muted"
+          style="
+            font-size: 1rem !important;
+            color: red !important;
+            padding-left: 2%;
+          "
+          >Password Require at least 8 Characters!</span
+        >
+
+        <br />
+
+        <label for="cfpassword" class="form-label">Confirm :</label>
+        <input
+          type="{{ showPassword ? 'text' : 'password' }}"
+          id="cfpassword"
+          name="cfpassword"
+          class="form-control py-3"
+          placeholder="Confirm Password"
+          formControlName="ConfirmPassword"
+        />
+
+        <span
+          *ngIf="
+            signupform.get('UserPassword')!.value !==
+            signupform.get('ConfirmPassword')!.value
+          "
+          class="text-muted"
+          style="
+            font-size: 1rem !important;
+            color: red !important;
+            padding-left: 2%;
+          "
+          >The Password are not match!</span
+        >
+        <br />
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="showpws"
+          id="showpws"
+          [(ngModel)]="showPassword"
+        />
+        <label
+          style="font-size: 1rem !important; position: relative; top: -5px"
+          class="form-check-label"
+          for="showpws"
+          >Show Passwords</label
+        >
+        <br />
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="agreed"
+          id="agreed"
+          formControlName="check"
+        />
+        <label
+          class="form-check-label"
+          for="agreed"
+          style="font-size: 1.3rem !important; position: relative; top: -5px"
+          >I agree the <a href="/terms" style="color: chocolate">Terms</a> &
+          <a style="color: chocolate" href="/privacy">Privacy</a></label
+        >
+        <br />
+        <button
+          class="btn btn-primary w-100 mt-5 py-3 fw-normal"
+          type="submit"
+          [disabled]="!signupform.valid"
+          style="
+            font-size: 2rem !important;
+            font-family: 'Russo One', cursive, Arial, sans-serif;
+          "
+        >
+          Sign Up
+        </button>
+      </form>
+      <br />
+      <div>
+        <h4>Already have an Account? <a routerLink="/login">Login Here!</a></h4>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <button (click)="click()">Click</button> -->
