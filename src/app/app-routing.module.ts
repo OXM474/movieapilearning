@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+  { path: 'home', component: HomeComponent },
   {
     path: 'login',
     component: LoginComponent,
@@ -20,7 +21,7 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'detil/:movieid',
+    path: 'detail/:movieid',
     component: DetilComponent,
   },
   { path: 'nowplaying', component: NowplayingComponent },

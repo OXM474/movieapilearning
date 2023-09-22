@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { GetapiService } from '../getapi.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Login } from 'src/interface/movieresult';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,10 @@ export class LoginComponent implements OnInit {
     });
 
     result.subscribe({
-      next: (uslogin: any) => {
-        console.log(uslogin.data);
+      next: (uslogin: Login) => {
         if (uslogin.status == 'success') {
           this.logcfn = uslogin.status;
-          this.Router.navigateByUrl('');
+          this.Router.navigateByUrl('home');
         }
       },
       error: (err: HttpErrorResponse) => {

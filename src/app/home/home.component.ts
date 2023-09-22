@@ -4,6 +4,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import {
+  Movie,
+  Dates,
+  Result,
+  OriginalLanguage,
+} from '../../interface/movieresult';
 
 @Component({
   selector: 'app-home',
@@ -26,18 +32,18 @@ export class HomeComponent implements OnInit {
 
   constructor(private getapi: GetapiService, private router: Router) {}
 
-  nowplaying = [];
-  popular = [];
-  toprated = [];
-  upcoming = [];
+  nowplaying: Result[] = [];
+  popular: Result[] = [];
+  toprated: Result[] = [];
+  upcoming: Result[] = [];
 
   moviesub: Subscription = new Subscription();
 
   ngOnInit(): void {
     const poresult = this.getapi.getapi('now_playing');
     this.moviesub = poresult.subscribe({
-      next: (res: any) => {
-        this.nowplaying = res['results'];
+      next: (res: Movie) => {
+        this.nowplaying = res.results!;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -45,8 +51,8 @@ export class HomeComponent implements OnInit {
     });
     const npresult = this.getapi.getapi('popular');
     this.moviesub = npresult.subscribe({
-      next: (res: any) => {
-        this.popular = res['results'];
+      next: (res: Movie) => {
+        this.popular = res.results!;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -54,8 +60,8 @@ export class HomeComponent implements OnInit {
     });
     const trresult = this.getapi.getapi('top_rated');
     this.moviesub = trresult.subscribe({
-      next: (res: any) => {
-        this.toprated = res['results'];
+      next: (res: Movie) => {
+        this.toprated = res.results!;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -63,8 +69,8 @@ export class HomeComponent implements OnInit {
     });
     const ucresult = this.getapi.getapi('upcoming');
     this.moviesub = ucresult.subscribe({
-      next: (res: any) => {
-        this.upcoming = res['results'];
+      next: (res: Movie) => {
+        this.upcoming = res.results!;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -77,7 +83,7 @@ export class HomeComponent implements OnInit {
     });
   }
   detial(movieid: number) {
-    this.router.navigateByUrl('/detil/' + movieid);
+    this.router.navigateByUrl('/detail/' + movieid);
   }
   nowplayingpage() {
     this.router.navigateByUrl('/nowplaying');

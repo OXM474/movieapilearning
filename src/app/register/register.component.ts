@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GetapiService } from '../getapi.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Login } from 'src/interface/movieresult';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -48,7 +49,7 @@ export class RegisterComponent implements OnInit {
       passwordConfirm: this.signupform.get('ConfirmPassword'),
     });
     resultsignup.subscribe({
-      next: (ussignin: any) => {
+      next: (ussignin: Login) => {
         console.log(ussignin.data);
         if (ussignin.status == 'success') {
           this.Router.navigateByUrl('');

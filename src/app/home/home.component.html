@@ -36,14 +36,14 @@
         <img
           src="https://image.tmdb.org/t/p/w500/{{ upcoming['poster_path'] }}"
           class="card-img-top"
-          (click)="detial(upcoming['id'])"
+          (click)="detial(upcoming['id']!)"
           style="cursor: pointer"
         />
         <div class="card_body">
           <h5
             style="padding-top: 10px; padding-left: 5px; cursor: pointer"
             class="card-title"
-            (click)="detial(upcoming['id'])"
+            (click)="detial(upcoming['id']!)"
           >
             {{ upcoming["title"] }}
           </h5>
@@ -88,7 +88,7 @@
         <img
           src="https://image.tmdb.org/t/p/w500/{{ nowmovie['poster_path'] }}"
           class="card-img-top"
-          (click)="detial(nowmovie['id'])"
+          (click)="detial(nowmovie['id']!)"
           style="cursor: pointer"
         />
 
@@ -96,7 +96,7 @@
           <h5
             style="padding-top: 10px; padding-left: 5px; cursor: pointer"
             class="card-title"
-            (click)="detial(nowmovie['id'])"
+            (click)="detial(nowmovie['id']!)"
           >
             {{ nowmovie["title"] }}
           </h5>
@@ -141,7 +141,7 @@
         <img
           src="https://image.tmdb.org/t/p/w500/{{ popular['poster_path'] }}"
           class="card-img-top"
-          (click)="detial(popular['id'])"
+          (click)="detial(popular['id']!)"
           style="cursor: pointer"
         />
 
@@ -149,7 +149,7 @@
           <h5
             style="padding-top: 10px; padding-left: 5px; cursor: pointer"
             class="card-title"
-            (click)="detial(popular['id'])"
+            (click)="detial(popular['id']!)"
           >
             {{ popular["title"] }}
           </h5>
@@ -194,7 +194,7 @@
         <img
           src="https://image.tmdb.org/t/p/w500/{{ toprated['poster_path'] }}"
           class="card-img-top"
-          (click)="detial(toprated['id'])"
+          (click)="detial(toprated['id']!)"
           style="cursor: pointer"
         />
 
@@ -202,7 +202,7 @@
           <h5
             style="padding-top: 10px; padding-left: 5px; cursor: pointer"
             class="card-title"
-            (click)="detial(toprated['id'])"
+            (click)="detial(toprated['id']!)"
           >
             {{ toprated["title"] }}
           </h5>
