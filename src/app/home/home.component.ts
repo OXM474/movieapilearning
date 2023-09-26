@@ -1,22 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetapiService } from '../getapi.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription, UnsubscriptionError } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import {
-  Movie,
-  Dates,
-  Result,
-  OriginalLanguage,
-} from '../../interface/movieresult';
+import { Movie, Result } from '../../interface/movieresult';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   private selectedMovieData = new BehaviorSubject<{
     id: number;
     overview: string;
@@ -30,8 +26,13 @@ export class HomeComponent implements OnInit {
     this.selectedMovieData.next(data);
   }
 
-  constructor(private getapi: GetapiService, private router: Router) {}
+  constructor(
+    private getapi: GetapiService,
+    private router: Router,
+    private auth: AuthService
+  ) {}
 
+  login = this.auth.isAuthenticated();
   nowplaying: Result[] = [];
   popular: Result[] = [];
   toprated: Result[] = [];
@@ -76,25 +77,26 @@ export class HomeComponent implements OnInit {
         console.log(err);
       },
     });
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+    this.router.events.subscribe(() => {
+      if (NavigationEnd) {
         window.scrollTo(0, 0);
       }
     });
   }
+  ngOnDestroy(): void {
+    this.moviesub.unsubscribe;
+  }
   detial(movieid: number) {
-    this.router.navigateByUrl('/detail/' + movieid);
+    this.router.navigateByUrl('/detail' + movieid);
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
+    if (NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
   }
-  nowplayingpage() {
-    this.router.navigateByUrl('/nowplaying');
-  }
-  upcomingpage() {
-    this.router.navigateByUrl('/nowplaying');
-  }
-  popularpage() {
-    this.router.navigateByUrl('/nowplaying');
-  }
-  topratedpage() {
-    this.router.navigateByUrl('/nowplaying');
+  sigout() {
+    this.auth.logout();
+    this.router.navigateByUrl('/login');
   }
 }

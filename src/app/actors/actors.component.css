@@ -1,27 +1,26 @@
-.detil {
-  backdrop-filter: detil(5px);
-  -webkit-backdrop-filter: detil(10px);
-  background-color: rgba(255, 255, 255, 0.5);
-  height: 100%;
-  width: auto;
+.actor {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.99),
+      rgba(255, 255, 255, 0.99)
+    ),
+    url(../../assets/1154.jpg);
   background-size: cover;
   background-blend-mode: overlay;
   background-repeat: no-repeat;
-  padding-left: 3rem;
-  padding-top: 3rem;
+  background-position: center center;
+  height: 100%;
 }
-.genres {
-  margin-top: 9px;
-  margin-left: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
-  border: solid 1px #6e645e;
-  box-sizing: border-box;
-  border-radius: 1rem;
-  height: auto;
-  width: auto;
-  display: inline-flex;
-  align-self: center;
+.actordetial {
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  margin-left: 10px;
+  border-radius: 20px;
+  background: linear-gradient(
+    rgba(125, 124, 124, 0.5),
+    rgba(125, 124, 124, 0.5)
+  );
 }
 .scroll {
   overflow-x: scroll;

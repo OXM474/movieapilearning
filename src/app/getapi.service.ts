@@ -8,6 +8,7 @@ export class GetapiService {
   constructor(private http: HttpClient) {}
 
   baseURL: string = 'https://api.themoviedb.org/3/movie/';
+  actorbaseURL: string = 'https://api.themoviedb.org/3/person/';
   apikey: string = '6e7a2a802b323ac45305779e663bfda6';
 
   getapi(contain: string) {
@@ -16,7 +17,7 @@ export class GetapiService {
       `${this.baseURL}${contain}?api_key=${this.apikey}&language=en-US&page=1`
     );
   }
-  getactordetil(movieid: number) {
+  getactors(movieid: number) {
     return this.http.get(
       `${this.baseURL}${movieid}/credits?api_key=${this.apikey}`
     );
@@ -26,9 +27,24 @@ export class GetapiService {
       `${this.baseURL}${movieid}?api_key=${this.apikey}&language=en-US`
     );
   }
+  gettrailer(movieid: number) {
+    return this.http.get(
+      `${this.baseURL}${movieid}/videos?api_key=${this.apikey}`
+    );
+  }
   getsimilar(moveid: number) {
     return this.http.get(
       `${this.baseURL}${moveid}/similar?api_key=${this.apikey}&language=en-US&page=1`
+    );
+  }
+  getactordetails(actorid: number) {
+    return this.http.get(
+      `${this.actorbaseURL}${actorid}?api_key=${this.apikey}&language=en-US`
+    );
+  }
+  getactormovie(actorid: number) {
+    return this.http.get(
+      `${this.actorbaseURL}${actorid}/movie_credits?api_key=${this.apikey}&language=en-US`
     );
   }
   // https://api.themoviedb.org/3/movie/now_playing?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US&page=1
@@ -36,6 +52,9 @@ export class GetapiService {
   // https://api.themoviedb.org/3/movie/459003?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US
   // https://image.tmdb.org/t/p/w500//iIvQnZyzgx9TkbrOgcXx0p7aLiq.jpg
   // https://api.themoviedb.org/3/movie/385687/similar?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US&page=1
+  // https://api.themoviedb.org/3/movie/968051/videos?api_key=6e7a2a802b323ac45305779e663bfda6
+  // https://api.themoviedb.org/3/person/3896?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US
+  // https://api.themoviedb.org/3/person/3896/movie_credits?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US
 
   loginUrl: string = 'https://msi.htoowaiyan.com/api/v1/users/signin';
   signupUrl: string = 'https://msi.htoowaiyan.com/api/v1/users/signup';

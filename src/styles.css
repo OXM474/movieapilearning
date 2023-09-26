@@ -3,8 +3,8 @@ body {
   height: 100%;
   margin-left: 0;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0.8)
+      rgba(255, 255, 255, 0.99),
+      rgba(255, 255, 255, 0.99)
     ),
     url(./assets/1154.jpg);
   background-size: cover;

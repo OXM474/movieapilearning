@@ -10,6 +10,19 @@
       />
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
+    <div class="navbar-text" *ngIf="!this.login; else logout">
+      <button class="btn btn-outline-primary me-1" routerLink="/login">
+        Login
+      </button>
+      <button class="btn btn-primary" routerLink="/register">Signup</button>
+    </div>
+    <ng-template #logout>
+      <div class="navbar-text">
+        <button class="btn btn-outline-primary me-1" (click)="sigout()">
+          Logout
+        </button>
+      </div>
+    </ng-template>
   </div>
 </nav>
 <div
@@ -51,8 +64,16 @@
       <p style="width: 50rem; margin-top: -10px">
         {{ this.moviedetil["overview"] }}
       </p>
-      <div style="margin-top: -20px; display: flex; flex-direction: column">
-        <h1 style="color: #3e001f">Actors:</h1>
+      <a
+        href="https://www.youtube.com/embed/{{
+          this.officialtrailerkey
+        }}?autoplay=1&volume=30"
+        target="_blank"
+        style="color: #212529; font-size: 1.7rem; margin-top: -5px"
+        >Watch Trailer</a
+      >
+      <div style="display: flex; flex-direction: column">
+        <h1 style="color: #3e001f; margin-bottom: -5px">Actors:</h1>
         <div
           class="scroll"
           style="display: flex; height: auto; width: 48.99rem"
@@ -61,9 +82,10 @@
             *ngFor="let actor of actors; let i = index"
             style="padding-right: 1px; padding-left: 0"
           >
-            <div class="card" style="width: auto; height: 15rem">
+            <div class="card" style="width: auto; height: 18rem">
               <img
-                style="width: 8rem; height: 12rem"
+                style="width: 8rem; height: 12rem; cursor: pointer"
+                (click)="getactor(actor['id'])"
                 src="https://image.tmdb.org/t/p/w500/{{
                   actor['profile_path']
                 }}"
@@ -74,13 +96,21 @@
                   style="
                     padding-top: 10px;
                     padding-left: 5px;
+                    padding-bottom: -13px;
                     font-size: 0.872rem;
+                    cursor: pointer;
                   "
+                  (click)="getactor(actor['id'])"
                   class="card-title"
                 >
                   {{ actor["name"] }}
                 </h5>
               </div>
+              <span
+                class="card-text"
+                style="font-size: 0.872rem; padding-left: 5px; color: #c0c0c0"
+                >{{ actor["character"] }}</span
+              >
             </div>
           </div>
         </div>
@@ -88,3 +118,4 @@
     </div>
   </div>
 </div>
+<app-similar sml="More like this" [similarlist]="similar"> </app-similar>

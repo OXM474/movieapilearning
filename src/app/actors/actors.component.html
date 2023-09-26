@@ -1,0 +1,111 @@
+<nav class="navbar" style="background-color: #7d7c7c">
+  <div class="container-fluid">
+    <a href="" class="navbar-brand">Movie</a>
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search Movies"
+        aria-label="Search"
+      />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <div class="navbar-text" *ngIf="!this.login; else logout">
+      <button class="btn btn-outline-primary me-1" routerLink="/login">
+        Login
+      </button>
+      <button class="btn btn-primary" routerLink="/register">Signup</button>
+    </div>
+    <ng-template #logout>
+      <div class="navbar-text">
+        <button class="btn btn-outline-primary me-1" (click)="sigout()">
+          Logout
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</nav>
+<div style="padding-left: 7rem; padding-top: 3rem" class="actor">
+  <div style="display: flex; flex-direction: row">
+    <img
+      style="width: 15rem; height: 25rem; border: solid #f5f5dc 2px"
+      src="https://image.tmdb.org/t/p/w500/{{
+        this.actordetail['profile_path']
+      }}"
+    />
+    <div class="actordetial">
+      <div
+        style="display: flex; flex-direction: column; margin: 1rem 1rem 0 1rem"
+      >
+        <div style="display: flex; flex-direction: row">
+          <h1>
+            {{ this.actordetail["name"] }}
+          </h1>
+          <span
+            style="
+              align-self: flex-end;
+              padding-bottom: 12px;
+              padding-left: 5px;
+            "
+            >Birthday: {{ this.actordetail["birthday"] }}</span
+          >
+        </div>
+        <p style="font-size: 16.7px">{{ this.actordetail["biography"] }}</p>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column">
+    <h1
+      style="width: 15rem; color: #3e001f; cursor: pointer; margin-left: -7rem"
+    >
+      Known for:
+    </h1>
+    <div
+      class="scroll"
+      style="display: flex; height: auto; width: auto; margin-left: -7rem"
+    >
+      <div
+        *ngFor="let movie of actormovies; let i = index"
+        style="padding-right: 1px; padding-left: 0"
+      >
+        <div class="card" style="width: 15rem; height: 30rem">
+          <img
+            src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
+            class="card-img-top"
+            (click)="detial(movie['id']!)"
+            style="cursor: pointer"
+          />
+          <div class="card_body">
+            <h5
+              style="padding-top: 10px; padding-left: 5px; cursor: pointer"
+              class="card-title"
+              (click)="detial(movie['id']!)"
+            >
+              {{ movie["title"] }}
+            </h5>
+            <div style="font-size: 1rem; padding-left: 5px" class="card_title">
+              <i class="fa-solid fa-star" style="color: #ffd43b"
+                ><span style="color: black">
+                  {{ movie["vote_average"] }}
+                </span></i
+              >
+              <p
+                class="card-text"
+                style="
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  width: 100%;
+                "
+              >
+                {{ movie["overview"] }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,30 +1,30 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GetapiService } from '../getapi.service';
 import { Result, Movie } from 'src/interface/movieresult';
-import { HttpErrorResponse } from '@angular/common/http';
+import { GetapiService } from '../getapi.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-toprated',
-  templateUrl: './toprated.component.html',
-  styleUrls: ['./toprated.component.css'],
+  selector: 'app-now-playing',
+  templateUrl: './now-playing.component.html',
+  styleUrls: ['./now-playing.component.css'],
 })
-export class TopratedComponent implements OnInit, OnDestroy {
+export class NowPlayingComponent implements OnInit, OnDestroy {
   constructor(
     private getapi: GetapiService,
-    private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {}
-  toprated: Result[] = [];
   login = this.auth.isAuthenticated();
+  nowplaying: Result[] = [];
   moviesub: Subscription = new Subscription();
   ngOnInit(): void {
-    const topesult = this.getapi.getapi('toprated');
-    this.moviesub = topesult.subscribe({
+    const nplesult = this.getapi.getapi('now_playing');
+    this.moviesub = nplesult.subscribe({
       next: (res: Movie) => {
-        this.toprated = res.results!;
+        this.nowplaying = res.results!;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);

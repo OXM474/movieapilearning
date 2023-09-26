@@ -1,42 +1,55 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetapiService } from '../getapi.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {
+  Moviedetail,
+  TrailersResult,
+  Trailers,
+  Movie,
+  Result,
+} from 'src/interface/movieresult';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-detil',
   templateUrl: './detil.component.html',
   styleUrls: ['./detil.component.css'],
 })
-export class DetilComponent implements OnInit {
+export class DetilComponent implements OnInit, OnDestroy {
   constructor(
     private getapi: GetapiService,
     private ActivatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
   moviedetil: any = [];
   movieid!: number;
   genres: any = [];
   actors: any = [];
+  trailer: TrailersResult[] = [];
+  officialTrailers: any = [];
+  officialtrailerkey: string = '';
+  similar: Result[] = [];
   moviesub: Subscription = new Subscription();
+  login = this.auth.isAuthenticated();
 
-  ngOnInit() {
-    this.movieid = this.ActivatedRoute.snapshot.params['movieid'];
-    const movedt = this.getapi.getMovieDetails(this.movieid);
-    this.moviedetil = movedt.subscribe({
-      next: (res: any) => {
+  async ngOnInit(): Promise<void> {
+    this.movieid = await this.ActivatedRoute.snapshot.params['movieid'];
+    const movedt = await this.getapi.getMovieDetails(this.movieid);
+    this.moviesub = movedt.subscribe({
+      next: (res: Moviedetail) => {
         this.moviedetil = res;
-        this.genres = res['genres'];
+        this.genres = res.genres;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
       },
     });
-    const moveactors = this.getapi.getactordetil(this.movieid);
-    this.actors = moveactors.subscribe({
+    const moveactors = await this.getapi.getactors(this.movieid);
+    this.moviesub = moveactors.subscribe({
       next: (act: any) => {
         this.actors = act['cast'];
       },
@@ -44,42 +57,42 @@ export class DetilComponent implements OnInit {
         console.log(err);
       },
     });
+    const trail = await this.getapi.gettrailer(this.movieid);
+    this.moviesub = trail.subscribe({
+      next: (tril: Trailers) => {
+        this.trailer = tril['results']!;
+        this.officialTrailers = this.trailer.filter(
+          (key) => key.name === 'Official Trailer' && 'Trailer'
+        );
+        this.officialtrailerkey = this.officialTrailers[0]['key'];
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+    const smiilar = this.getapi.getsimilar(this.movieid);
+    this.moviesub = smiilar.subscribe({
+      next: (sm: Movie) => {
+        this.similar = sm['results']!;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+  }
+  ngOnDestroy(): void {
+    this.moviesub.unsubscribe;
   }
   getYear(dateString: string): string {
     const date = new Date(dateString);
     const year = date.getFullYear();
     return year.toString();
   }
-  // async ngOnInit() {
-  // this.movieid = this.ActivatedRoute.snapshot.params['id'];
-  // this.contain = this.ActivatedRoute.snapshot.params['contain'];
-  // console.log('before');
-  // await this.getmoviedetil();
-  // console.log('after');
-  // const moviedt = this.getapi.getapi(this.contain);
-  // this.moviesub = moviedt.subscribe({
-  //   next: (res: any) => {
-  //     this.moviedetil = res['results'];
-  //   },
-  //   error: (err: HttpErrorResponse) => {
-  //     console.log(err);
-  //   },
-  // });
-  // }
-  // getmoviedetil() {
-  //   return new Promise((resolve) => {
-  //     var result = this.getapi.getapi(this.contain);
-  //     this.moviesub = result.subscribe({
-  //       next: (reso: any) => {
-  //         console.log(reso);
-  //         this.moviedetil = reso['results'];
-  //         resolve(true);
-  //       },
-  //       error: (err: HttpErrorResponse) => {
-  //         console.log(err);
-  //         resolve(false);
-  //       },
-  //     });
-  //   });
-  // }
+  sigout() {
+    this.auth.logout();
+    this.router.navigateByUrl('/login');
+  }
+  getactor(actorid: number) {
+    this.router.navigateByUrl('/actor/' + actorid);
+  }
 }

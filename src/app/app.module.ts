@@ -9,10 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetilComponent } from './detil/detil.component';
-import { NowplayingComponent } from './nowplaying/nowplaying.component';
-import { PopularComponent } from './popular/popular.component';
+import { MovielistComponent } from './movielist/movielist.component';
+import { SimilarComponent } from './similar/similar.component';
+import { MovielistdetialComponent } from './movielistdetial/MovielistdetialComponent';
+import { NowPlayingComponent } from './now-playing/now-playing.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
+import { PopularComponent } from './popular/popular.component';
 import { TopratedComponent } from './toprated/toprated.component';
+import { ActorsComponent } from './actors/actors.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +25,14 @@ import { TopratedComponent } from './toprated/toprated.component';
     LoginComponent,
     RegisterComponent,
     DetilComponent,
-    NowplayingComponent,
-    PopularComponent,
+    MovielistComponent,
+    SimilarComponent,
+    MovielistdetialComponent,
+    NowPlayingComponent,
     UpcomingComponent,
+    PopularComponent,
     TopratedComponent,
+    ActorsComponent,
   ],
   imports: [
     BrowserModule,

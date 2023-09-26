@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GetapiService } from '../getapi.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Login } from 'src/interface/movieresult';
@@ -12,8 +12,8 @@ import { Login } from 'src/interface/movieresult';
 export class RegisterComponent implements OnInit {
   constructor(private Router: Router, private getapi: GetapiService) {}
   ngOnInit(): void {
-    this.Router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+    this.Router.events.subscribe(() => {
+      if (NavigationEnd) {
         window.scrollTo(0, 0);
       }
     });

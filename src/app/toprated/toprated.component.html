@@ -10,14 +10,22 @@
       />
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
-    <!-- <ng-container *ngIf=""> -->
-    <div class="navbar-text">
+    <div class="navbar-text" *ngIf="!this.login; else logout">
       <button class="btn btn-outline-primary me-1" routerLink="/login">
         Login
       </button>
       <button class="btn btn-primary" routerLink="/register">Signup</button>
     </div>
-    <!-- </ng-container> -->
+    <ng-template #logout>
+      <div class="navbar-text">
+        <button class="btn btn-outline-primary me-1" (click)="sigout()">
+          Logout
+        </button>
+      </div>
+    </ng-template>
   </div>
 </nav>
-<p>toprated works!</p>
+<app-movielistdetial
+  Des="Toprated"
+  [movielistdetial]="toprated"
+></app-movielistdetial>
