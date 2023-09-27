@@ -1,5 +1,14 @@
-<div style="display: flex; flex-direction: column; padding-top: 5rem">
-  <h1 style="width: auto; color: #3e001f; cursor: pointer">{{ sml }}</h1>
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-left: -3rem;
+  "
+>
+  <h1 style="width: auto; color: #3e001f; cursor: pointer">
+    {{ sml }}
+  </h1>
   <div class="scroll" style="display: flex; height: auto; width: auto">
     <div
       *ngFor="let similar of similarlist; let i = index"

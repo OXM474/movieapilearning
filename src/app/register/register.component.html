@@ -14,7 +14,7 @@
       background: linear-gradient(#ccc8aa6b, #ccc8aa6b);
       background-size: cover;
       background-blend-mode: overlay;
-      border-radius: 10%;
+      border-radius: 100px;
     "
   >
     <div style="padding: 7rem; border-radius: 7%">
@@ -178,7 +178,12 @@
           [(ngModel)]="showPassword"
         />
         <label
-          style="font-size: 1rem !important; position: relative; top: -5px"
+          style="
+            font-size: 1rem !important;
+            position: relative;
+            top: -0.1rem;
+            left: 0.5rem;
+          "
           class="form-check-label"
           for="showpws"
           >Show Passwords</label
@@ -194,7 +199,12 @@
         <label
           class="form-check-label"
           for="agreed"
-          style="font-size: 1.3rem !important; position: relative; top: -5px"
+          style="
+            font-size: 1rem !important;
+            position: relative;
+            top: -0.1rem;
+            left: 0.5rem;
+          "
           >I agree the <a href="/terms" style="color: chocolate">Terms</a> &
           <a style="color: chocolate" href="/privacy">Privacy</a></label
         >
