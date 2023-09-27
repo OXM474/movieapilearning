@@ -9,7 +9,9 @@
         style="width: 15rem; height: 30rem; margin-top: 5px; margin-left: 5px"
       >
         <img
-          src="https://image.tmdb.org/t/p/w500/{{ movielist['poster_path'] }}"
+          src="https://image.tmdb.org/t/p/original/{{
+            movielist['poster_path']
+          }}"
           class="card-img-top"
           (click)="detial(movielist['id']!)"
           style="cursor: pointer"

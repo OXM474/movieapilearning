@@ -38,7 +38,7 @@
   <div style="display: flex; flex-direction: row">
     <img
       style="width: 15rem; height: 25rem; border: solid #f5f5dc 2px"
-      src="https://image.tmdb.org/t/p/w500/{{
+      src="https://image.tmdb.org/t/p/original/{{
         this.actordetail['profile_path']
       }}"
     />
@@ -79,7 +79,7 @@
       >
         <div class="card" style="width: 15rem; height: 30rem">
           <img
-            src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
+            src="https://image.tmdb.org/t/p/original/{{ movie['poster_path'] }}"
             class="card-img-top"
             (click)="detial(movie['id']!)"
             style="cursor: pointer"

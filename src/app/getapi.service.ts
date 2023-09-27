@@ -44,7 +44,7 @@ export class GetapiService {
   }
   getactormovie(actorid: number) {
     return this.http.get(
-      `${this.actorbaseURL}${actorid}/movie_credxits?api_key=${this.apikey}&language=en-US`
+      `${this.actorbaseURL}${actorid}/movie_credits?api_key=${this.apikey}&language=en-US`
     );
   }
   search(searchword: string) {

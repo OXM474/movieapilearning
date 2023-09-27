@@ -37,7 +37,7 @@
 <div
   class="detil"
   [style.background-image]="
-    'url(https://image.tmdb.org/t/p/w500/' +
+    'url(https://image.tmdb.org/t/p/original/' +
     this.moviedetil['backdrop_path'] +
     ')'
   "
@@ -45,7 +45,9 @@
   <div style="display: flex; flex-direction: row">
     <img
       style="width: 21rem; height: 35rem; border: solid #f5f5dc 2px"
-      src="https://image.tmdb.org/t/p/w500/{{ this.moviedetil['poster_path'] }}"
+      src="https://image.tmdb.org/t/p/original/{{
+        this.moviedetil['poster_path']
+      }}"
     />
     <div style="display: flex; flex-direction: column; padding-left: 10px">
       <div style="display: flex; flex-direction: row">
@@ -95,7 +97,7 @@
               <img
                 style="width: 8rem; height: 12rem; cursor: pointer"
                 (click)="getactor(actor['id'])"
-                src="https://image.tmdb.org/t/p/w500/{{
+                src="https://image.tmdb.org/t/p/original/{{
                   actor['profile_path']
                 }}"
                 class="card-img-top"
@@ -126,5 +128,5 @@
       </div>
     </div>
   </div>
+  <app-similar sml="More like this" [similarlist]="similar"> </app-similar>
 </div>
-<app-similar sml="More like this" [similarlist]="similar"> </app-similar>

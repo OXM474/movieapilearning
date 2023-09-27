@@ -43,12 +43,13 @@ export class ActorsComponent implements OnInit, OnDestroy {
     const actmovdt = await this.getapi.getactormovie(this.actorid);
     this.moviesub = actmovdt.subscribe({
       next: (res: ActorsMovie) => {
-        this.actormovies = res['cast']!;
+        this.actormovies = res.cast!;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
       },
     });
+    console.log(this.actorid);
   }
   ngOnDestroy(): void {
     this.moviesub.unsubscribe;

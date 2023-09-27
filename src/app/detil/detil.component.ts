@@ -64,7 +64,7 @@ export class DetilComponent implements OnInit, OnDestroy {
       next: (tril: Trailers) => {
         this.trailer = tril['results']!;
         this.officialTrailers = this.trailer.filter(
-          (key) => key.name === 'Official Trailer' && 'Trailer'
+          (item) => item.type === 'Trailer'
         );
         this.officialtrailerkey = this.officialTrailers[0]['key'];
       },
