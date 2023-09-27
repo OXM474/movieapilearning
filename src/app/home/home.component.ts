@@ -13,19 +13,6 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private selectedMovieData = new BehaviorSubject<{
-    id: number;
-    overview: string;
-  } | null>(null);
-
-  get selectedMovieData$() {
-    return this.selectedMovieData.asObservable();
-  }
-
-  setSelectedMovieData(data: { id: number; overview: string }) {
-    this.selectedMovieData.next(data);
-  }
-
   constructor(
     private getapi: GetapiService,
     private router: Router,

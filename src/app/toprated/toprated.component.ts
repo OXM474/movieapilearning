@@ -21,7 +21,7 @@ export class TopratedComponent implements OnInit, OnDestroy {
   login = this.auth.isAuthenticated();
   moviesub: Subscription = new Subscription();
   ngOnInit(): void {
-    const topesult = this.getapi.getapi('toprated');
+    const topesult = this.getapi.getapi('top_rated');
     this.moviesub = topesult.subscribe({
       next: (res: Movie) => {
         this.toprated = res.results!;
