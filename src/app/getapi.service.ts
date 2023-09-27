@@ -47,6 +47,11 @@ export class GetapiService {
       `${this.actorbaseURL}${actorid}/movie_credxits?api_key=${this.apikey}&language=en-US`
     );
   }
+  search(searchword: string) {
+    return this.http.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=${this.apikey}&query=${searchword}`
+    );
+  }
   // https://api.themoviedb.org/3/movie/now_playing?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US&page=1
   // http://api.themoviedb.org/3/movie/453395/credits?api_key=6e7a2a802b323ac45305779e663bfda6
   // https://api.themoviedb.org/3/movie/459003?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US
@@ -55,6 +60,7 @@ export class GetapiService {
   // https://api.themoviedb.org/3/movie/968051/videos?api_key=6e7a2a802b323ac45305779e663bfda6
   // https://api.themoviedb.org/3/person/3896?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US
   // https://api.themoviedb.org/3/person/3896/movie_credits?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US
+  // https://api.themoviedb.org/3/search/movie?api_key=6e7a2a802b323ac45305779e663bfda6&query={search word}
 
   loginUrl: string = 'https://msi.htoowaiyan.com/api/v1/users/signin';
   signupUrl: string = 'https://msi.htoowaiyan.com/api/v1/users/signup';

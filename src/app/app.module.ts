@@ -17,6 +17,7 @@ import { UpcomingComponent } from './upcoming/upcoming.component';
 import { PopularComponent } from './popular/popular.component';
 import { TopratedComponent } from './toprated/toprated.component';
 import { ActorsComponent } from './actors/actors.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ActorsComponent } from './actors/actors.component';
     PopularComponent,
     TopratedComponent,
     ActorsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

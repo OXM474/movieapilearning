@@ -3,7 +3,7 @@ import { GetapiService } from '../getapi.service';
 import { Result, Movie } from 'src/interface/movieresult';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class TopratedComponent implements OnInit, OnDestroy {
     private router: Router,
     private auth: AuthService
   ) {}
+  search: string = '';
   toprated: Result[] = [];
   login = this.auth.isAuthenticated();
   moviesub: Subscription = new Subscription();
@@ -37,5 +38,14 @@ export class TopratedComponent implements OnInit, OnDestroy {
   sigout() {
     this.auth.logout();
     this.router.navigateByUrl('/login');
+  }
+  searchmovie(search: string) {
+    this.router.navigateByUrl('/search/' + search);
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
+    if (NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
   }
 }

@@ -30,6 +30,7 @@
           class="form-control py-3"
           placeholder="First Name"
           formControlName="UserFirstName"
+          (keyup.enter)="signup()"
         />
         <span
           *ngIf="
@@ -57,6 +58,7 @@
           class="form-control py-3"
           placeholder="Last Name"
           formControlName="UserLastName"
+          (keyup.enter)="signup()"
         />
         <span
           *ngIf="
@@ -98,6 +100,7 @@
           class="form-control py-3"
           placeholder="Email ID"
           formControlName="UserEmail"
+          (keyup.enter)="signup()"
         />
         <span
           *ngIf="
@@ -123,6 +126,7 @@
           class="form-control py-3"
           placeholder="Password"
           formControlName="UserPassword"
+          (keyup.enter)="signup()"
         />
 
         <span
@@ -149,6 +153,7 @@
           class="form-control py-3"
           placeholder="Confirm Password"
           formControlName="ConfirmPassword"
+          (keyup.enter)="signup()"
         />
 
         <span

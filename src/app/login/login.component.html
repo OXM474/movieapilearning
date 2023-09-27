@@ -33,6 +33,7 @@
           [(ngModel)]="useremail"
           required
           #email="ngModel"
+          (keyup.enter)="login()"
         />
         <span
           *ngIf="email.touched && !email.valid &&email.errors?.['required']"
@@ -57,6 +58,7 @@
           required
           minlength="8"
           #pass="ngModel"
+          (keyup.enter)="login()"
         />
 
         <span

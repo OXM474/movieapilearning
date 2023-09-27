@@ -4,7 +4,7 @@ import { GetapiService } from '../getapi.service';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-now-playing',
@@ -17,6 +17,7 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     private auth: AuthService,
     private router: Router
   ) {}
+  search: string = '';
   login = this.auth.isAuthenticated();
   nowplaying: Result[] = [];
   moviesub: Subscription = new Subscription();
@@ -37,5 +38,14 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   sigout() {
     this.auth.logout();
     this.router.navigateByUrl('/login');
+  }
+  searchmovie(search: string) {
+    this.router.navigateByUrl('/search/' + search);
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
+    if (NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
   }
 }

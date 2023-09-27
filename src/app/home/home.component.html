@@ -7,8 +7,17 @@
         type="search"
         placeholder="Search Movies"
         aria-label="Search"
+        [(ngModel)]="search"
+        name="search"
+        (keyup.enter)="searchmovie(search)"
       />
-      <button class="btn btn-primary" type="submit">Search</button>
+      <button
+        class="btn btn-primary"
+        name="search"
+        (click)="searchmovie(search)"
+      >
+        Search
+      </button>
     </form>
     <div class="navbar-text" *ngIf="!this.login; else logout">
       <button class="btn btn-outline-primary me-1" routerLink="/login">

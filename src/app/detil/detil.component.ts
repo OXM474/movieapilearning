@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetapiService } from '../getapi.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -34,6 +34,8 @@ export class DetilComponent implements OnInit, OnDestroy {
   officialtrailerkey: string = '';
   similar: Result[] = [];
   moviesub: Subscription = new Subscription();
+  search: string = '';
+
   login = this.auth.isAuthenticated();
 
   async ngOnInit(): Promise<void> {
@@ -94,5 +96,14 @@ export class DetilComponent implements OnInit, OnDestroy {
   }
   getactor(actorid: number) {
     this.router.navigateByUrl('/actor/' + actorid);
+  }
+  searchmovie(search: string) {
+    this.router.navigateByUrl('/search/' + search);
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
+    if (NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
   }
 }

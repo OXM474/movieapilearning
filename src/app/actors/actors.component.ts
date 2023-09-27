@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetapiService } from '../getapi.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -20,6 +20,7 @@ export class ActorsComponent implements OnInit, OnDestroy {
     private ActivatedRoute: ActivatedRoute
   ) {}
 
+  search: string = '';
   actorid!: number;
   actordetail: any = []!;
   actormovies: ActorCast[] = [];
@@ -58,5 +59,14 @@ export class ActorsComponent implements OnInit, OnDestroy {
   }
   detial(movieid: number) {
     this.router.navigateByUrl('/detail/' + movieid);
+  }
+  searchmovie(search: string) {
+    this.router.navigateByUrl('/search/' + search);
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
+    if (NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
   }
 }

@@ -10,6 +10,7 @@ import { PopularComponent } from './popular/popular.component';
 import { TopratedComponent } from './toprated/toprated.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { ActorsComponent } from './actors/actors.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: 'actor/:actorid',
     component: ActorsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'search/:searchword',
+    component: SearchComponent,
     canActivate: [AuthGuard],
   },
 ];

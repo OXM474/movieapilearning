@@ -25,6 +25,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   toprated: Result[] = [];
   upcoming: Result[] = [];
 
+  search: string = '';
+  searchedmovie: Result[] = [];
+
   moviesub: Subscription = new Subscription();
 
   ngOnInit(): void {
@@ -85,5 +88,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   sigout() {
     this.auth.logout();
     this.router.navigateByUrl('/login');
+  }
+  searchmovie(search: string) {
+    this.router.navigateByUrl('/search/' + search);
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
+    if (NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
   }
 }
