@@ -56,6 +56,7 @@ export class GetapiService {
   // http://api.themoviedb.org/3/movie/453395/credits?api_key=6e7a2a802b323ac45305779e663bfda6
   // https://api.themoviedb.org/3/movie/459003?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US
   // https://image.tmdb.org/t/p/w500//iIvQnZyzgx9TkbrOgcXx0p7aLiq.jpg
+  // https://image.tmdb.org/t/p/original/iIvQnZyzgx9TkbrOgcXx0p7aLiq.jpg
   // https://api.themoviedb.org/3/movie/385687/similar?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US&page=1
   // https://api.themoviedb.org/3/movie/968051/videos?api_key=6e7a2a802b323ac45305779e663bfda6
   // https://api.themoviedb.org/3/person/3896?api_key=6e7a2a802b323ac45305779e663bfda6&language=en-US

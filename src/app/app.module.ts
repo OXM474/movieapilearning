@@ -18,6 +18,7 @@ import { PopularComponent } from './popular/popular.component';
 import { TopratedComponent } from './toprated/toprated.component';
 import { ActorsComponent } from './actors/actors.component';
 import { SearchComponent } from './search/search.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SearchComponent } from './search/search.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

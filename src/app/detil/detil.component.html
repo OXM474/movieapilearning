@@ -69,7 +69,7 @@
           {{ getYear(this.moviedetil["release_date"]) }}
         </p>
         <span style="margin-top: 14px; margin-left: 10px; color: #0f2c59"
-          >Movie Long: {{ this.moviedetil["runtime"] }}hours</span
+          >Movie Long: {{ this.moviedetil["runtime"] }}minutes</span
         >
       </div>
       <p style="width: 50rem; margin-top: -10px">
@@ -80,7 +80,12 @@
           this.officialtrailerkey
         }}?autoplay=1&volume=30"
         target="_blank"
-        style="color: #212529; font-size: 1.7rem; margin-top: -5px"
+        style="
+          color: #212529;
+          font-size: 1.7rem;
+          margin-top: -5px;
+          width: 11.65rem;
+        "
         >Watch Trailer</a
       >
       <div style="display: flex; flex-direction: column">
