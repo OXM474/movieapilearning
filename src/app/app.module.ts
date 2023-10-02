@@ -19,6 +19,8 @@ import { TopratedComponent } from './toprated/toprated.component';
 import { ActorsComponent } from './actors/actors.component';
 import { SearchComponent } from './search/search.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { CookieService } from 'ngx-cookie-service';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     TopratedComponent,
     ActorsComponent,
     SearchComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     FormsModule,
     NgxSkeletonLoaderModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

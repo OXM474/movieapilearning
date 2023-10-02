@@ -49,10 +49,10 @@ export class RegisterComponent implements OnInit {
       passwordConfirm: this.signupform.get('ConfirmPassword'),
     });
     resultsignup.subscribe({
-      next: (ussignin: Login) => {
-        console.log(ussignin.data);
-        if (ussignin.status == 'success') {
-          this.Router.navigateByUrl('');
+      next: (ussignup: Login) => {
+        console.log(ussignup.data);
+        if (ussignup.status == 'success') {
+          this.Router.navigateByUrl('/login');
         }
       },
       error: (err: HttpErrorResponse) => {

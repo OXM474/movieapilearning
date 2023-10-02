@@ -11,10 +11,9 @@ export class GetapiService {
   actorbaseURL: string = 'https://api.themoviedb.org/3/person/';
   apikey: string = '6e7a2a802b323ac45305779e663bfda6';
 
-  getapi(contain: string) {
-    // console.log(contain);
+  getapi(contain: string, page: number) {
     return this.http.get(
-      `${this.baseURL}${contain}?api_key=${this.apikey}&language=en-US&page=1`
+      `${this.baseURL}${contain}?api_key=${this.apikey}&language=en-US&page=${page}`
     );
   }
   getactors(movieid: number) {

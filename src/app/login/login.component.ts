@@ -4,7 +4,6 @@ import { GetapiService } from '../getapi.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Login } from 'src/interface/movieresult';
 import { AuthService } from '../auth/auth.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -35,6 +34,7 @@ export class LoginComponent implements OnInit {
     result.subscribe({
       next: (uslogin: Login) => {
         if (uslogin.status == 'success') {
+          localStorage.setItem('token', uslogin.token!);
           this.logcfn = uslogin.status;
           this.Router.navigateByUrl('home');
         }

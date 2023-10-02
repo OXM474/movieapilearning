@@ -1,8 +1,9 @@
-<nav class="navbar" style="background-color: #7d7c7c">
+<nav class="navbar" style="background-color: #7d7c7c" appHighlight>
   <div class="container-fluid">
     <a href="" class="navbar-brand">Movie</a>
     <form class="d-flex" role="search">
       <input
+        appHighlight
         class="form-control me-2"
         type="search"
         placeholder="Search Movies"
@@ -44,7 +45,7 @@
 >
   <div style="display: flex; flex-direction: row">
     <img
-      style="width: 21rem; height: 35rem; border: solid #f5f5dc 2px"
+      style="width: 24rem; height: 40rem; border: solid #f5f5dc 2px"
       src="https://image.tmdb.org/t/p/original/{{
         this.moviedetil['poster_path']
       }}"
@@ -75,60 +76,58 @@
       <p style="width: 50rem; margin-top: -10px">
         {{ this.moviedetil["overview"] }}
       </p>
-      <a
-        href="https://www.youtube.com/embed/{{
-          this.officialtrailerkey
-        }}?autoplay=1&volume=30"
-        target="_blank"
-        style="
-          color: #212529;
-          font-size: 1.7rem;
-          margin-top: -5px;
-          width: 11.65rem;
-        "
-        >Watch Trailer</a
+      <iframe
+        width="795.6"
+        height="442"
+        [src]="this.safeurl"
+        allowfullscreen
+        frameborder="0"
+      ></iframe>
+    </div>
+  </div>
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      padding-top: 1rem;
+      padding-left: 1rem;
+    "
+  >
+    <h1 style="color: #3e001f; margin-bottom: -5px">Actors:</h1>
+    <div class="scroll" style="display: flex; height: auto; width: 73.4rem">
+      <div
+        *ngFor="let actor of actors; let i = index"
+        style="padding-right: 1px; padding-left: 0"
       >
-      <div style="display: flex; flex-direction: column">
-        <h1 style="color: #3e001f; margin-bottom: -5px">Actors:</h1>
-        <div
-          class="scroll"
-          style="display: flex; height: auto; width: 48.99rem"
-        >
-          <div
-            *ngFor="let actor of actors; let i = index"
-            style="padding-right: 1px; padding-left: 0"
-          >
-            <div class="card" style="width: auto; height: 18rem">
-              <img
-                style="width: 8rem; height: 12rem; cursor: pointer"
-                (click)="getactor(actor['id'])"
-                src="https://image.tmdb.org/t/p/original/{{
-                  actor['profile_path']
-                }}"
-                class="card-img-top"
-              />
-              <div class="card_body">
-                <h5
-                  style="
-                    padding-top: 10px;
-                    padding-left: 5px;
-                    padding-bottom: -13px;
-                    font-size: 0.872rem;
-                    cursor: pointer;
-                  "
-                  (click)="getactor(actor['id'])"
-                  class="card-title"
-                >
-                  {{ actor["name"] }}
-                </h5>
-              </div>
-              <span
-                class="card-text"
-                style="font-size: 0.872rem; padding-left: 5px; color: #c0c0c0"
-                >{{ actor["character"] }}</span
-              >
-            </div>
+        <div class="card" style="width: auto; height: 18rem">
+          <img
+            style="width: 8rem; height: 12rem; cursor: pointer"
+            (click)="getactor(actor['id'])"
+            src="https://image.tmdb.org/t/p/original/{{
+              actor['profile_path']
+            }}"
+            class="card-img-top"
+          />
+          <div class="card_body">
+            <h5
+              style="
+                padding-top: 10px;
+                padding-left: 5px;
+                padding-bottom: -13px;
+                font-size: 0.872rem;
+                cursor: pointer;
+              "
+              (click)="getactor(actor['id'])"
+              class="card-title"
+            >
+              {{ actor["name"] }}
+            </h5>
           </div>
+          <span
+            class="card-text"
+            style="font-size: 0.872rem; padding-left: 5px; color: #c0c0c0"
+            >{{ actor["character"] }}</span
+          >
         </div>
       </div>
     </div>

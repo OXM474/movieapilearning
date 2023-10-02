@@ -3,7 +3,6 @@ import { GetapiService } from '../getapi.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription, UnsubscriptionError } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { Movie, Result } from '../../interface/movieresult';
 import { AuthService } from '../auth/auth.service';
 
@@ -31,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   moviesub: Subscription = new Subscription();
 
   ngOnInit(): void {
-    const poresult = this.getapi.getapi('now_playing');
+    const poresult = this.getapi.getapi('now_playing', 1);
     this.moviesub = poresult.subscribe({
       next: (res: Movie) => {
         this.nowplaying = res.results!;
@@ -40,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     });
-    const npresult = this.getapi.getapi('popular');
+    const npresult = this.getapi.getapi('popular', 1);
     this.moviesub = npresult.subscribe({
       next: (res: Movie) => {
         this.popular = res.results!;
@@ -49,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     });
-    const trresult = this.getapi.getapi('top_rated');
+    const trresult = this.getapi.getapi('top_rated', 1);
     this.moviesub = trresult.subscribe({
       next: (res: Movie) => {
         this.toprated = res.results!;
@@ -58,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     });
-    const ucresult = this.getapi.getapi('upcoming');
+    const ucresult = this.getapi.getapi('upcoming', 1);
     this.moviesub = ucresult.subscribe({
       next: (res: Movie) => {
         this.upcoming = res.results!;

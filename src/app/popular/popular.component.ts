@@ -20,8 +20,9 @@ export class PopularComponent implements OnInit, OnDestroy {
   popular: Result[] = [];
   login = this.auth.isAuthenticated();
   moviesub: Subscription = new Subscription();
+  page: number = 1;
   ngOnInit(): void {
-    const popesult = this.getapi.getapi('popular');
+    const popesult = this.getapi.getapi('popular', this.page);
     this.moviesub = popesult.subscribe({
       next: (res: Movie) => {
         this.popular = res.results!;

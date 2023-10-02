@@ -20,8 +20,9 @@ export class UpcomingComponent implements OnInit, OnDestroy {
   upcoming: Result[] = [];
   login = this.auth.isAuthenticated();
   moviesub: Subscription = new Subscription();
+  page: number = 1;
   ngOnInit(): void {
-    const upcresult = this.getapi.getapi('upcoming');
+    const upcresult = this.getapi.getapi('upcoming', this.page);
     this.moviesub = upcresult.subscribe({
       next: (res: Movie) => {
         this.upcoming = res.results!;

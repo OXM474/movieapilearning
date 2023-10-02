@@ -21,8 +21,9 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
   login = this.auth.isAuthenticated();
   nowplaying: Result[] = [];
   moviesub: Subscription = new Subscription();
+  page: number = 1;
   ngOnInit(): void {
-    const nplesult = this.getapi.getapi('now_playing');
+    const nplesult = this.getapi.getapi('now_playing', this.page);
     this.moviesub = nplesult.subscribe({
       next: (res: Movie) => {
         this.nowplaying = res.results!;
@@ -47,5 +48,17 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
     if (NavigationEnd) {
       window.scrollTo(0, 0);
     }
+  }
+  nextpage() {
+    this.page = this.page + 1;
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
+  }
+  previouspage() {
+    this.page = this.page - 1;
+    setTimeout(() => {
+      window.location.reload();
+    }, 400);
   }
 }
