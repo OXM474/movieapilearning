@@ -105,11 +105,11 @@ export class DetilComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     });
-    await this.gettrailer();
-    await this.getyoutubeurl();
     setTimeout(() => {
       this.loading = false;
     }, 900);
+    await this.gettrailer();
+    await this.getyoutubeurl();
   }
   ngOnDestroy(): void {
     this.moviesub.unsubscribe;
