@@ -95,13 +95,23 @@
         <button
           class="btn btn-primary w-100 mt-5 py-3 fw-normal"
           (click)="login()"
-          [disabled]="!email.valid || !pass.valid"
+          [disabled]="!email.valid || !pass.valid || loading"
           style="
             font-size: 2rem !important;
             font-family: 'Russo One', cursive, Arial, sans-serif;
           "
         >
           Login
+          <div
+            *ngIf="loading"
+            class="loadingio-spinner-dual-ring-pi0dxep1iu"
+            style="position: relative; top: -3.8rem; left: 21rem"
+          >
+            <div class="ldio-aud9lcdrqef">
+              <div></div>
+              <div><div></div></div>
+            </div>
+          </div>
         </button>
       </form>
       <br />

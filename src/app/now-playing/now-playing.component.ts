@@ -49,16 +49,4 @@ export class NowPlayingComponent implements OnInit, OnDestroy {
       window.scrollTo(0, 0);
     }
   }
-  nextpage() {
-    this.page = this.page + 1;
-    setTimeout(() => {
-      window.location.reload();
-    }, 400);
-  }
-  previouspage() {
-    this.page = this.page - 1;
-    setTimeout(() => {
-      window.location.reload();
-    }, 400);
-  }
 }

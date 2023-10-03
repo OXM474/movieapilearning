@@ -54,6 +54,7 @@ export class DetilComponent implements OnInit, OnDestroy {
   moviesub: Subscription = new Subscription();
   search: string = '';
   Date = Date.now();
+  loading: boolean = true;
 
   login = this.auth.isAuthenticated();
   gettrailer(): Promise<string> {
@@ -106,6 +107,9 @@ export class DetilComponent implements OnInit, OnDestroy {
     });
     await this.gettrailer();
     await this.getyoutubeurl();
+    setTimeout(() => {
+      this.loading = false;
+    }, 900);
   }
   ngOnDestroy(): void {
     this.moviesub.unsubscribe;

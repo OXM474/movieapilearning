@@ -25,12 +25,14 @@ export class LoginComponent implements OnInit {
   useremail: string = '';
   password: string = '';
   logcfn: string = '';
+  loading: boolean = false;
   login() {
     var result = this.getapi.login({
       email: this.useremail,
       password: this.password,
     });
     this.auth.login();
+    this.loading = true;
     result.subscribe({
       next: (uslogin: Login) => {
         if (uslogin.status == 'success') {
@@ -44,5 +46,8 @@ export class LoginComponent implements OnInit {
         console.log(err);
       },
     });
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
   }
 }

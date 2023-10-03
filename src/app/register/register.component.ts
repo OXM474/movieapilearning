@@ -11,6 +11,7 @@ import { Login } from 'src/interface/movieresult';
 })
 export class RegisterComponent implements OnInit {
   constructor(private Router: Router, private getapi: GetapiService) {}
+  loading: boolean = false;
   ngOnInit(): void {
     this.Router.events.subscribe(() => {
       if (NavigationEnd) {
@@ -48,6 +49,7 @@ export class RegisterComponent implements OnInit {
       password: this.signupform.get('UserPassword'),
       passwordConfirm: this.signupform.get('ConfirmPassword'),
     });
+    this.loading = true;
     resultsignup.subscribe({
       next: (ussignup: Login) => {
         console.log(ussignup.data);
@@ -60,8 +62,8 @@ export class RegisterComponent implements OnInit {
         console.log(err);
       },
     });
-  }
-  click() {
-    console.log(this.signupform.get('UserFirstName')?.value);
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
   }
 }
