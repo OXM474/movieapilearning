@@ -21,7 +21,7 @@
       <h1 style="font-family: 'Russo One', cursive, Arial, sans-serif">
         Sign Up
       </h1>
-      <form [formGroup]="signupform" (ngSubmit)="(signup)">
+      <form [formGroup]="signupform" (ngSubmit)="signup()">
         <label for="firstname" class="form-label">First Name :</label>
         <input
           type="text"

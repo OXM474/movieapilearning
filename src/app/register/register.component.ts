@@ -37,17 +37,20 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.minLength(8),
     ]),
-    gender: new FormControl('Gender', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
     check: new FormControl(false, [Validators.required]),
   });
 
   showPassword: boolean = false;
   signup() {
     var resultsignup = this.getapi.signup({
-      name: this.signupform.get('UserFirstName' + 'UserLastName'),
-      email: this.signupform.get('UserEmail'),
-      password: this.signupform.get('UserPassword'),
-      passwordConfirm: this.signupform.get('ConfirmPassword'),
+      name:
+        this.signupform.get('UserFirstName')?.value +
+        ' ' +
+        this.signupform.get('UserLastName')?.value,
+      email: this.signupform.get('UserEmail')?.value,
+      password: this.signupform.get('UserPassword')?.value,
+      passwordConfirm: this.signupform.get('ConfirmPassword')?.value,
     });
     this.loading = true;
     resultsignup.subscribe({
