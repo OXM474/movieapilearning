@@ -62,8 +62,8 @@
         />
         <span
           *ngIf="
-            !signupform.get('UserLastName')!.touched &&
-            signupform.get('UserLastName')!.valid
+            signupform.get('UserLastName')!.touched &&
+            !signupform.get('UserLastName')!.valid
           "
           class="text-muted"
           style="
